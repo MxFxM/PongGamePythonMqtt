@@ -17,13 +17,30 @@ def on_connect(client, userdata, flags, rc):
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-    print(str(msg.payload))
+    message = str(msg.payload)
+    print(message)
+    # switch between game running or not
+    # maybee state machine as in client
+    if "client online" in message: # a new client wants to log on
+        if not player1_id is None and not player2_id is None: # both player slots are filled
+            # send rejected
+        else: # a player slot is open
+            id = message.split(" ")[2]
+            if player1_id == None: # no player 1
+                pass
+                # send id accept player 1
+            else: # no player 2
+                pass
+                # send id accept player 2
 
 client = mqtt.Client()
 client.on_connect = on_connect
 client.on_message = on_message
 
 client.connect(BROKER_IP, BROKER_PORT, 60)
+
+player1_id = None
+player2_id = None
 
 while True:
     client.loop()
