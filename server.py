@@ -23,6 +23,7 @@ def on_message(client, userdata, msg):
     # maybee state machine as in client
     if "client online" in message: # a new client wants to log on
         if not player1_id is None and not player2_id is None: # both player slots are filled
+            pass
             # send rejected
         else: # a player slot is open
             id = message.split(" ")[2]
